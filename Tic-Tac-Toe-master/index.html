@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My first game</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- jQuery library -->
+  <script src="js/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/index.js" type="text/javascript"></script>
+  <script src="js/back.js" type="text/javascript"></script>
+  <script src="js/add.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="css/modal.css">
+  <script src="js/modal.js" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+
+  <link href='https://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet'>
+  <style media="screen">
+
+
+
+  .place ::-webkit-input-placeholder {
+   font-size: 14px;
+
+ }
+ ::-webkit-input-placeholder {
+
+  font-family:"Sniglet"
+ }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+
+    table td {
+      padding: 5rem;
+      border: 2px solid black;
+      height: 40px;
+    }
+
+    table tr:first-child td {
+      border-top: 0;
+    }
+
+    table tr td:first-child {
+      border-left: 0;
+    }
+
+    table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    table tr td:last-child {
+      border-right: 0;
+    }
+
+    .modal table tr td {
+      font-size: 20px;
+      font-weight: ;
+    }
+
+    body {
+      background-image: url("img/back2.jpg");
+      width: 95%;
+      overflow-x: none;
+    font-family:'Sniglet';
+      font-size: 22px;
+    }
+
+
+
+    #coin {
+      height: 22px;
+      width: 22px;
+      image-repeat: no-repeat;
+      margin-left: -13px;
+      margin-right: 3px;
+      margin-top: -3px;
+    }
+
+
+    select:required:invalid {
+      color: orange;
+      width: 100%;
+      height: 38px;
+
+      border-radius: 5px;
+    }
+
+    option[value=""][disabled] {
+      display: none;
+    }
+
+    option {
+      color: black;
+      font-size: 13px;
+    }
+
+    #coin_btn,
+    #diamond_btn,
+    #coin_icon,
+    #diamond_icon {
+      font-size: 17px;
+      height: 36px;
+
+    }
+
+    #coin_btn,
+    #diamond_btn {
+      background-color: black;
+      opacity: 0.6;
+    }
+
+    .score {
+      margin-top: 20px;
+      margin-left: 0.3px
+    }
+
+    .room {
+      width: 90%;
+      background-color: lightblue;
+    }
+
+    .offline_play_area td {
+      height: 100px;
+      width: 100px;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 18px;
+      width: 100%;
+      height: 50px;
+      color: white;
+      transition: width 2s;
+    }
+
+    .room_style {
+      text-align: left;
+      height: auto;
+      width: 97%;
+      background-color: lightblue;
+      opacity: 0.9;
+      font-size: 30px;
+      border: solid blue;
+      border-radius: 10px;
+    }
+
+    #online_room_list {
+      font-family: 'Audiowide';
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    #select_your_room {
+      font-family: 'Audiowide';
+      font-size: 22px;
+      font-weight: bold;
+
+    }
+
+
+    .footer2 {
+      position: fixed;
+      left: 33%;
+      bottom: 60px;
+      width: 100%;
+
+      color: white;
+      text-align: center;
+    }
+
+
+    .footer3 {
+      position: fixed;
+      bottom: 13px;
+      width: 100%;
+      font-size: 15px;
+      color: black;
+    }
+
+    .footer_spinner {
+      position: fixed;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 50px;
+      color: white;
+      text-align: center;
+    }
+
+    #spinner_div {
+      display: none;
+    }
+
+    #video_btn {
+      border-radius: 5px;
+    }
+
+    #spin_btn {
+      border-radius: 5px;
+    }
+
+    .group {
+      position: relative;
+      margin-bottom: 45px;
+    }
+
+    input {
+      font-size: 18px;
+      padding: 10px 10px 10px 5px;
+      display: block;
+      width: 270px;
+      border: none;
+      border-bottom: 1px solid #757575;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    /* LABEL ======================================= */
+
+    label {
+      color: #999;
+      font-size: 18px;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      left: 5px;
+      top: 10px;
+      transition: 0.2s ease all;
+      -moz-transition: 0.2s ease all;
+      -webkit-transition: 0.2s ease all;
+    }
+
+    /* active state */
+
+    input:focus~label,
+    input:valid~label {
+      top: -20px;
+      font-size: 14px;
+      color: #5264AE;
+    }
+
+    /* active state */
+
+    input:focus~.bar:before,
+    input:focus~.bar:after {
+      width: 50%;
+    }
+
+    /* HIGHLIGHTER ================================== */
+
+    .highlight {
+      position: absolute;
+      height: 60%;
+      width: 100px;
+      top: 25%;
+      left: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* active state */
+
+    input:focus~.highlight {
+      -webkit-animation: inputHighlighter 0.3s ease;
+      -moz-animation: inputHighlighter 0.3s ease;
+      animation: inputHighlighter 0.3s ease;
+    }
+
+    /* ANIMATIONS ================ */
+
+    @-webkit-keyframes inputHighlighter {
+      from {
+        background: #5264AE;
+      }
+      to {
+        width: 0;
+        background: transparent;
+      }
+    }
+
+    @-moz-keyframes inputHighlighter {
+      from {
+        background: #5264AE;
+      }
+      to {
+        width: 0;
+        background: transparent;
+      }
+    }
+
+    @keyframes inputHighlighter {
+      from {
+        background: #5264AE;
+      }
+      to {
+        width: 0;
+        background: transparent;
+      }
+    }
+
+
+    .modal__footer {
+      position: absolute;
+      width: 100%;
+    }
+
+    .btnLightBlue {
+      background: #5DC8CD;
+    }
+
+
+    .btnFade.btnLightBlue:hover {
+      background: #01939A;
+    }
+
+    .btnLightBlue.btnPush {
+      box-shadow: 0px 5px 0px 0px #1E8185;
+    }
+
+    .btnLightBlue.btnPush:hover {
+      box-shadow: 0px 0px 0px 0px #1E8185;
+    }
+
+    .btnLightBlue.btnBorder {
+      box-shadow: 0px 0px 0px 0px #01939A;
+    }
+
+    .btnLightBlue.btnBorder:hover {
+      box-shadow: 0px 0px 0px 5px #01939A;
+    }
+
+    table {
+      table-layout: fixed;
+    }
+
+    .dot {
+      height: 30px;
+      width: 30px;
+      background-color: red;
+      border: solid 2px white;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: -3px;
+    }
+
+
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #3498db;
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      -webkit-animation: spin 2s linear infinite;
+      /* Safari */
+      animation: spin 1.5s linear infinite;
+    }
+
+    /* Safari */
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    #offline_play_area_table td {
+      background-repeat: no-repeat;
+      background-size: auto 35px;
+      background-position: center;
+    }
+
+    .img_span {
+      background-repeat: no-repeat;
+      background-size: auto 32px;
+      background-position: center;
+    }
+
+    #player_img {
+      background-repeat: no-repeat;
+      background-size: auto 26px;
+      background-position: center;
+    }
+
+/*  style for get coin form*/
+#money[type=text], #password[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+#btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+btn:hover {
+    opacity: 0.8;
+}
+
+/* Center the image and position the close button */
+.img-container {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.div_container {
+    padding: 16px;
+}
+
+span.psw1 {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal5 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content-5 {
+    background-color: #fefefe;
+    margin: 20% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close-5 {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close-5:hover,
+.close-5:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate-5 {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw1 {
+       display: block;
+       float: none;
+    }
+    .canbtn {
+       width: 100%;
+    }
+}
+
+
+*{
+box-sizing: border-box
+}
+.container_c
+{
+  display:none;
+  width :80%;
+margin: 0 auto;
+overflow :hidden;
+font-size:20px;
+margin-top:40px;
+font-family:arial;
+margin-bottom:20px;
+}
+.chat-container
+{
+  height :100px;
+overflow :auto;
+transform: rotate(180deg);
+direction: rtl;
+}
+.message
+{
+
+transform: rotate(180deg);
+direction: ltr;
+
+}
+.send-message-form input{
+width :100%;
+border: none;
+font-size :16px;
+padding: 10px;
+}
+.fonts{
+  font-family:'Sniglet';
+}
+button{
+  display: none;
+}
+.terms p{
+  font-size:15px;
+  font-family:arial;
+  font-weight:;
+}
+  </style>
+  <!-- optional -->
+  <script type="text/javascript" src="js/jquery-1.9.js"></script>
+
+  <!-- must-have, which will be created by cordova prepare/build -->
+  <script type="text/javascript" src="cordova.js"></script>
+
+</head>
+<script>
+if(typeof Fullscreen !== 'undefined'){
+Fullscreen.on();
+}
+
+  document.addEventListener('deviceready', function () {
+      if(typeof Fullscreen !== 'undefined'){
+      Fullscreen.on();
+
+    }
+  });
+
+var button_sound
+button_sound = document.createElement("audio");
+button_sound.src = "audio/button.mp3";
+button_sound.volume = 1;
+button_sound.autoPlay = false;
+button_sound.preLoad = true;
+button_sound.controls = true;
+
+
+
+// Get the modal
+var modal5 = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal5) {
+        modal5.style.display = "none";
+    }
+}
+
+
+// Get the modal
+var modal9 = document.getElementById('id09');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal9) {
+        modal9.style.display = "none";
+    }
+}
+</script>
+
+<script>
+// Get the modal
+var modal5 = document.getElementById('id08');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal5) {
+        modal5.style.display = "none";
+    }
+}
+</script>
+
+<script>
+//alert("ranjit")
+// Get the modal
+var modal5 = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal5) {
+        modal5.style.display = "none";
+    }
+}
+
+</script>
+<script>
+// Get the modal
+var modal7 = document.getElementById('id03');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal7) {
+        modal5.style.display = "none";
+    }
+}
+
+
+
+</script>
+<script>
+var numbers=0;
+function focus_input(){
+//alert("tru;e");
+document.getElementById('id12').style.display='block';
+window.location.hash="#chat";
+};
+
+
+</script>
+<body>
+  <button type="button"  id="ref" name="button" onclick="document.getElementById('id011').style.display='block'" style="display:none">open</button>
+  <div id="id011" class="modal5 modal6" style='z-index:10000'>
+    <div class="modal-content-5 animate-5 " style="border:solid transparent;border-radius:10px;margin-top:-1px">
+      <div class="modal-header" style="background-color:purple">
+        <span onclick="document.getElementById('id011').style.display='none'" style="float:right;font-size:36px;color:red" title="Close Modal">&times;</span>
+        <h2 style="text-align:center">Extra Benefit</h2>
+
+      </div>
+      <div class="div_container">
+        <br>
+<p style="text-align:center">SignUp your friend with this refer code to get money.</p>
+<h1 id="ref_temp" style="text-align:center;border:solid;border-left: 15px solid #3EC8AC;
+  border-right: 15px solid #4E90A4;">------</h1>
+<p style="font-size:15px;text-align:center">100 coin per share</p>
+<br>        <center><span  class=" btn-warning btn" style="text-align:right;font-size:23px" onclick="document.getElementById('id011').style.display='none'">Play</span></center>
+      </div>
+    </div>
+  </div>
+
+
+<!--- check for chatting div from codepen-->
+
+<div class="container_c" style="color:#3399ff;text-align:left;font-family: "Comic Sans MS", cursive, sans-serif">
+  <div class="chat-container" >
+    <div class="message">
+      <p style="font-weight:bold;margin-bottom:-5px;word-wrap: break-word;font-family: "Comic Sans MS", cursive, sans-serif"></p>
+    </div>
+
+
+  </div>
+</div>
+<!-- end of chekcing of chatting appp from codepen--->
+  <div style="display:none;z-index:1000" class="loader"></div>
+
+  <div id="coin_convert" class="alert alert-danger alert-dismissible" style="font-size:20px;display: none;text-align: center;position:absolute;z-index:5;width:330px;height:80px;margin-left:22px;margin-top:20%;">
+    <a onclick="close_alert()" class="close" data-dismiss="alert" aria-label="close" style="color:black;font-size:40px;margin-top:-18px;">&times;</a> Unable to Conver Your Coin <br><strong>Try Again !</strong>
+  </div>
+
+  <i class="fa fa-arrow-left" style="font-size:40px;position:absolute;margin-top:10px;margin-left:10px;z-index:100;font-weight:bold;display:none" id="back_btn" onclick="goBack()"> </i>
+  <i class="fa fa-times pull-right" style="font-size:35px;position:absolute ;margin-top:10px;margin-left:82%;z-index:100;display:none" id="cross" onclick="addCancel()"></i>
+
+  <div id="homepage">
+
+    <div class="row btn-custom score container" style="font-family:Times New Roman">
+      <div class="btn-group btn-group-lg col-sm-5 col-xs-6 sound">
+        <button id="coin_btn" class="btn btn-default  col-xs-9" style="height:45px"><img id="coin" src="img/coin2.png"></img><b style="color:white;opacity:1;font-size:15px;" id="main_account_coin">....</b></button>
+        <button id="coin_icon" class="btn col-xs-2" style="background-color:#00FF1A;height:45px" onclick="open_coin_modal()">   <a href="#modal"><i class="fa fa-plus" style="margin-left:-8px;"></i></a></button>
+      </div>
+
+      <div class="btn-group btn-group-lg col-sm-5 col-xs-6 sound" style="margin-left:0px;">
+        <button id="diamond_btn" class="btn btn-default col-xs-9" style="height:45px"><span id="coin" class="fa fa-inr" style="color:yellow;font-size:20px"></span><b style="color:white;font-size:15px" id="main_account_diamond">...</b></button>
+        <button id="diamond_icon" class="btn col-xs-2" style="background-color:#00FF1A;height:45px" onclick="open_coin_modal()">  <a href="#modal"><i class="fa fa-plus" style="margin-left:-8px"></i></a></button>
+      </div>
+    </div>
+    <br>
+
+    <div id="coin_modal" class="modal1">
+      <!-- Modal content -->
+      <div class="modal-content coin_modal_content" style="text-align:center">
+        <div class="modal-header coin_modal_header">
+          <span style="font-size:30px;float:right;color:red" onclick="close_coin_modal()">&times;</span>
+          <h2 style="color:yellow">Increase your coin</h2>
+        </div>
+        <div class="modal-body">
+          <br>
+          <div class="table-responsive">
+            <tr style="background-color:lightblue;">
+              <td><span style="text-align:center;margin-left:10px;color:blue;font-weight: bold;font-size:15px" class="center">Watch  adds to get coins <img id="coin" src="img/coin2.png" style="margin-left:7px"></img> <img height=auto; width=50; src="img/video.png" style="margin-left:15px" alt="video"></span><span></span></td>
+            </tr>
+          </div>
+          <br>
+        </div>
+
+        <div class="modal-footer coin_modal_footer" style="text-align:center">
+          <button type="button" class="btn btn-danger btn-lg" name="button" onclick="close_coin_modal();reward_show()" style="margin-top:10px;margin-bottom:10px">Watch Now </button>
+        </div>
+      </div>
+
+    </div>
+    <!--- end of model for increasing for coin -->
+
+    <!-- Modal fior increasing for diamond -->
+    <!--
+    <div id="diamond_modal" class="modal1">
+
+       Modal content
+      <div class="diamond_modal_content modal-content">
+        <div class="diamond_modal_header modal-header">
+          <span onclick="close_diamond_modal()" style="float:right;font-size:30px;color:red">&times;</span>
+          <h4 style="text-align:center;font-size: 24px;font-weight:bold;">Convert your coin into diamond</h4>
+        </div>
+        <div class="modal-body">
+          <br>
+          <table class="table" style="font-size:16px">
+            <tbody>
+              <tr>
+                <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold" class="center"><img id="coin" src="img/coin2.png"></img>1000  into <img id="coin" style="margin-left:6px" src="img/diamond.jpg"></img> <b style="margin-left:-7px">10</b> </span><span><button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="convert_coin(10,1000);">Convert</button></span></td>
+              </tr>
+              <tr>
+                <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold" class="center"><img id="coin" src="img/coin2.png"></img>5000  into <img id="coin" style="margin-left:6px" src="img/diamond.jpg"></img> <b style="margin-left:-7px">50</b> </span><span><button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="convert_coin(50,5000);">Convert</button></span></td>
+              </tr>
+
+              <tr>
+                <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold" class="center"><img id="coin" src="img/coin2.png"></img>10000  into <img id="coin" style="margin-left:6px" src="img/diamond.jpg"></img> <b style="margin-left:-7px">105</b> </span><span><button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="convert_coin(105,10000);">Convert</button></span></td>
+              </tr>
+
+              <tr>
+                <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold" class="center"><img id="coin" src="img/coin2.png"></img>25000  into <img id="coin" style="margin-left:6px" src="img/diamond.jpg"></img> <b style="margin-left:-7px">260</b> </span><span><button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="convert_coin(260,25000);">Convert</button></span></td>
+              </tr>
+
+              <tr>
+                <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold" class="center"><img id="coin" src="img/coin2.png"></img>50000  into <img id="coin" style="margin-left:6px" src="img/diamond.jpg"></img> <b style="margin-left:-7px">530</b> </span><span><button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="convert_coin(530,50000);">Convert</button></span></td>
+              </tr>
+
+              <tr>
+                <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;" class="center"><img id="coin" src="img/coin2.png"></img>100000  into <img id="coin" style="margin-left:6px" src="img/diamond.jpg"></img> <b style="margin-left:-7px">1100</b> </span><span><button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="convert_coin(1110,100000);">Convert</button></span></td>
+
+              </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+        <div class="diamond_modal_footer modal-footer" style="height:20px;">
+
+        </div>
+      </div>
+
+    </div>
+     end    modal for incresinf for diamond-->
+
+    <!--  starting of code for showing wallet on homepage-->
+    <div class="">
+
+    </div>
+    <!--  ending of code for wallet  homepage-->
+
+
+
+
+
+
+    <!--  starting of code for showing img on homepage-->
+    <div class="play_select" style="margin-left : 0%;margin-top:10px;font-family: 'Audiowide'">
+
+      <a href="#choose_multi" style="color:black;">
+        <div onclick="play_online_multi()" data-transition="slide" style="border:solid black 3px;height:170px;width:36%;float:left;margin-left:9%;background: linear-gradient(to bottom, #0066cc 0%, #33ccff 100%);border-radius:5px;background-size:100%;background-color:lightgreen; box-shadow: inset 0px -5px 1px #234d8e, 6px 7px 3px rgba(66, 66, 66, 0.5);">
+          <center>
+            <h1 style="font-size:32px;"> Play with<br> friend </h1></center>
+        </div>
+      </a>
+
+      <a href="#offline" style="color:black">
+        <div onclick="showing_offline_play_area()" style="border:solid black 3px;height:170px;width:36%;margin-left:58%;background: linear-gradient(to bottom, #0066cc 0%, #33ccff 100%); box-shadow: inset 0px -5px 1px #234d8e, 6px 7px 3px rgba(66, 66, 66, 0.5);border-radius:5px;background-repeat:no-repeat;background-size:100%;">
+          <center>
+            <h1 style="font-size:30px"> Play <br>Offline </h1></center>
+        </div>
+      </a>
+      <br>
+
+
+      <a href="#online_room_list" style="color:black">
+        <div class="" onclick="play_online_room_show()" style="border:solid black 3px;height:170px;width:36%;float:left;margin-left:9%; box-shadow: inset 0px -5px 1px #234d8e, 6px 7px 3px rgba(66, 66, 66, 0.5);background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);border-radius:5px;">
+          <center>
+            <h1 style="font-size:32px"> Play<br> Room </h1></center>
+        </div>
+      </a>
+
+
+      <a style="color:black">
+        <div class="" onclick="play_online()" style="border:solid black 3px;height:170px;width:36%;margin-left:58%; box-shadow: inset 0px -5px 1px #234d8e, 6px 7px 3px rgba(66, 66, 66, 0.5);background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);border-radius:5px;">
+          <center>
+            <h1 style="font-size:32px"> Quick<br> Play </h1></center>
+        </div>
+      </a>
+      <!---
+    <div class="" style="border:solid black 3*px;height:150px;width:36%;margin-left:9%; margin-top: 20px;box-shadow: inset 0px -5px 1px #234d8e, 6px 7px 3px rgba(66, 66, 66, 0.5);background: linear-gradient(to bottom, #0066cc 0%, #33ccff 100%);border-radius:5px;">
+      <center><h1>  Play room </h1></center>
+    </div>
+-->
+<div class="" id="network" style="margin-top:10px;margin-left:5px;text-align:center;display:none">
+
+</div>
+
+
+    </div>
+    <!--- starting  of wallet in homepage-->
+
+    <div id="wallet" class="modal1">
+      <div class="container" >
+
+      <!-- Modal content -->
+      <div class="wallet_content modal-content1" >
+
+        <div class="wallet_header modal-header">
+          <span onclick="close_wallet()" class="close_wallet" style="font-size:30px;float:right;" >&times;</span>
+            <div style="text-align:center;color:yellow">
+               <i  class="fa fa-inr" style="font-size:30px;margin-right:20px;margin-top:8px;" ></i>
+            <span style="text-align:center;font-size:30px;">Your Wallet</span>
+          </div>
+        </div>
+        <div class="modal-body" >
+              <h2 style="text-align:center;color:purple" >Balance: <b style="color:#00ff00"> <i  class="fa fa-inr"  > </i> <span id="wallet_balance">..</span></b> </h2>
+              <h2 style="text-align:center;color:blue" >Ref No: <b style="color:#00ff00"> <i  class="fa fa-hash"  > </i> <span id="ref_main">...</span></b> </h2>
+
+<hr style="font-weight:bold">
+<center>
+              <a href="#modal"><button   onclick="document.getElementById('id01').style.display='block';close_wallet();"  class="btn btn-danger" style="width:70%;height:50px;font-size:25px;text-align:center">Transfer Money</button></a>
+</br>
+</br>
+      <a href="#modal">        <button onclick="document.getElementById('id02').style.display='block';close_wallet()" class="btn btn-info" style="width:70%;height:50px;font-size:25px;text-align:center">Convert Coin </button></br></a>
+</br>
+</center>
+        </div>
+
+        <div class="wallet_footer modal-footer" style="height:20px;" >
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="id01" class="modal5" style="font-family: 'Audiowide'">
+    <div class="modal-content-5 animate-5 " style="border-radius:10px;margin-top:-3%;">
+      <div class="img-container " >
+        <span onclick="document.getElementById('id01').style.display='none';window.location.hash='#homepage'" class="close-5" title="Close Modal" style='color:red'>&times;</span>
+      </div>
+      <center>
+      <div class="div_container " >
+
+        <h3 class="pull-left" style="color:purple;"><b>Email Id </b></h3>
+        <input  type="text" id="payment_email" placeholder="Enter registered email" style="margin-top:0px;font-family:Times New Roman;" name="uname" required>
+<p style="color:red;font-size:15px" id="wrong_email"></p>
+        <h3 class="pull-left" style="color:purple"><b>Amount </b></h3>
+        <input  type="number" id="Withdrwal_amount" placeholder="Minimum 100 Rupees" style="margin-top:0px;font-family:Times New Roman;" name="uname" required>
+<p style="color:red;font-size:15px" id="wrong_amount"></p>
+        <h3 class="pull-left" style="color:purple"><b>Paytm Number</b></h3>
+        <div class='place'><input  type="number" id="payment_paytm_no" placeholder="Mobile number registered on Paytm" style="margin-top:0px;font-family:Times New Roman;" name="uname" required></div>
+<br>
+        <center><button type="submit" onclick="money_request()" class="btn btn-warning btn-lg" style="font-size:25px;font-family:Times New Roman;background-color:	#191970">Submit</button></center>
+      </div>
+    </center>
+    </div>
+  </div>
+
+  <div id="id02" class="modal5 modal6">
+    <div class="modal-content-5 animate-5 " style="border:solid transparent;border-radius:10px">
+      <div class="img-container">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close-5" title="Close Modal">&times;</span>
+      </div>
+      <div class="div_container">
+
+                            <b style="margin-bottom:20px;color:#00ff00"><span> <i id='g_phone' class="fa fa-inr" style='color:' ></i> </span><span id="show_amount"> 1000</span></b>
+<hr>
+        <h3 style="color:purple"><b>Enter your Coin</b></h3>
+        <input id="converting_coin" type="text" placeholder="Enter your coin" style="margin-top:-8px;color:black" name="uname" onkeyup="conversoin2()" required>
+        <br>
+        <center><span id="convert_button" onclick="get_money(3)" class=" btn-warning btn-lg" style="text-align:right;font-size:25px">Convert</span></center>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="id03" class="modal5 modal7" style="font-family: 'Audiowide'">
+    <div class="modal-content-5 animate-5 " style="border-radius:10px">
+      <div class="img-container " >
+
+      </div>
+      <div class="div_container" style="text-align:center;">
+          <span class="fa fa-check-square-o" style="color:green;font-size:100px;"></span>
+        </br>
+<span style="font-size:30px" id="modal_balance">Your balance: </span><br>
+<span class="fa fa-inr" style="color:green;font-size:30px"> </span>
+<span id="wallet_balance_show" style="color:green;font-size:30px"> </span>
+</br>
+<br>
+
+<span id="remaining_balance_show"></span>
+<br><br>
+          <button  class="btn" style="background-color:green;color:white;font-size:40px;" onclick="sucess()"> Done</button>
+      </div>
+    </div>
+  </div>
+
+<!--- end of wallet in homepage--->
+
+    <div class="footer" style="">
+      <button type="button" id="video_btn" class="btn pull-left" onclick="open_coin_modal()" style="height:60px;width:20%;background-color: " name="button"><img height=auto; width=50; src="img/video.png" alt="spinner"></button>
+      <!--<button type="button" id="spin_btn" class="btn pull-right" onclick="spinner()" style="height:60px;width:20%" name="button"><img height=auto; width=50; src="img/spinner4.png" alt="spinner"></button> -->
+<a href="#modal"><button type="button" id="spin_btn" class="btn pull-right fa fa-inr pull-right" onclick="open_wallet()" style="height:60px;width:20%;font-size:35px;background-color:purple;color:yellow" name="button"></button></a>
+
+      <button type="button" id="host_left_modal_btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#host_left_modal" style="display:none">Open host Modal</button>
+
+    </div>
+  </div>
+
+  <!-- starting of Modal for sign up form  -->
+  <div id="id09" class="modal5" >
+    <div class="modal-content-5 animate-5 " style="border-radius:10px;margin-top:-3%;">
+      <div class="modal-header" style="">
+
+        <span  style="float:right;color:red" onclick="document.getElementById('id09').style.display='none';window.location.hash='#homepage'">x</span>
+        <span><h3> Sign Up </h3></span>
+      </div>
+      <div class="modal-body">
+        <h4>Enter your name </h4>
+        <input type="text" name="" id="userName" placeholder="Username" class="form-control" value="">
+        <h4>Email</h4>
+        <input type="text" name="" id="userEmail" placeholder="abc@email.com" value="" class="form-control">
+        <h4>Password</h4>
+        <input type="text" name="" id="userPassword" placeholder="1234567789" value="" class="form-control">
+        <h4>Ref No</h4>
+        <input type="text" name="" id="userRefno" placeholder="Enter to get 100 coin extra" value="" class="form-control">
+
+
+        <a href="#terms" onclick="$('#id16').css('display','block');" style="font-size:10px;text-decoration:underline">By registering you agree to our terms and conditions</a>
+<br>
+      </div>
+      <center>
+        <div class="" style="opacity:1 !important">
+          <button type="button" id="cancel_sign_up" class="btn btn-danger btn-lg"  onclick="document.getElementById('id09').style.display='none'"style="align:center;opacity:1 !important">Cancel</button>
+          <button type="button" onclick="register()" id="sign_up_html" class="btn btn-success btn-lg" style="width:180px">Register</button>
+<br>
+
+          <a type="button" id="login_modal_btn" onclick="document.getElementById('id09').style.display='none';document.getElementById('id010').style.display='block'" style="text-align:right;font-size:15px;">Already have an account?</a>
+          <br></div>
+      </center>
+    </div>
+  </div>
+
+
+  <button type="button" id="sign_up_modal_btn" onclick="document.getElementById('id09').style.display='block';window.location.hash='#signup'" style="display:none"></button>
+  <!--<div class="modal fade" id="sign_up_modal" role="dialog" style="opacity:0.9;margin-top:10%">
+    <div class="modal-dialog">
+
+     Modal content
+      <div class="modal-content">
+
+      </div>
+
+    </div>
+  </div>-->
+  <!--- end of model for sign up  page -->
+
+    <!-- starting of Modal for sign up form  -->
+    <div id="id010" class="modal5" >
+      <div class="modal-content-5 animate-5 " style="border-radius:10px;margin-top:-3%;">
+        <div class="modal-header" style="">
+          <h3>Login</h3>
+
+        </div>
+        <div class="modal-body">
+          <h4>Enter your Email</h4>
+          <input type="text" id="email" name="" placeholder="abc@yahoo.com" value="" class="form-control">
+          <h4>Enter your Password</h4>
+          <input type="text" id="password" name="" placeholder="1234567789" value="" class="form-control">
+
+          <br>
+
+        </div>
+        <center>
+          <div class="" style="opacity:1 !important">
+            <button type="button" class="btn btn-danger btn-lg" id="cancel_login" onclick="document.getElementById('id010').style.display='none'" style="">Cancel</button>
+            <button type="button" id="login_html" onclick="login()" class="btn btn-success btn-lg" style="width:180px">Login</button>
+<br><br>
+            <a type="button" id="sign_up_modal_btn" onclick="document.getElementById('id010').style.display='none';document.getElementById('id09').style.display='block'" style="font-size:15px">Dont have an account?, Register</a>
+            </br><br></div>
+        </center>
+      </div>
+        </div>
+
+  <button type="button" id="login_modal_btn" onclick="document.getElementById(id010).stlye.display='block'" style="display:none"></button>
+  <div class="modal fade" id="login_modal" role="dialog" style="opacity:0.9;margin-top:10%">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+      </div>
+
+    </div>
+  </div>
+  <!--- end of model for login page -->
+
+
+
+  <div class="modal fade" id="host_left_modal" role="dialog" style="opacity:0.9;margin-top:20%">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="">
+
+        </div>
+        <center>
+          <div class="modal-body">
+            <h2>Host has closed the room</h2>
+            <BR>
+            <button class="btn btn-primary btn-lg" onclick="close()" data-dismiss="modal">Ok</button>
+          </div>
+        </center>
+      </div>
+    </div>
+    <!--- end of model for host left -->
+  </div>
+
+
+
+  <!--modal to show level-->
+
+  <div class="container" id="level">
+    <button type="button" id="contest_list_btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#contest_list" style="display:none">Open Modal</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="contest_list" role="dialog" style="opacity:1;margin-top:40px;">
+      <div class="modal-dialog" style="overflow-y:scroll; max-height:95%">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+
+          </div>
+        </div>
+
+      </div>
+      <!--modal to show winner finish-->
+
+
+
+    </div>
+  </div>
+
+  <center>
+    <div class="container choose" style="margin-top:100px;display:none">
+
+      <button type="button" class="btn btn-danger btn" name="button" style="width:50%" onclick="play_online_freind()">Host</button>
+      <br>
+      <br>
+      <button type="button" class="btn btn-primary" name="button" data-toggle="collapse" data-target="#demo" style="width:50%" >Join</button>
+
+      <div id="demo" class="collapse">
+        <br>
+        <input type="text" style="margin-left:20%" id="join_no">
+        <button type="button" class="btn-success" name="button" onclick="join()">Submit</button>
+        <br><br>
+        <!--<center><p id="error" style="font-size:25px;color:red !important"></p></center>-->
+      </div>
+
+    </div>
+  </center>
+
+
+  <center>
+    <div class="play_area container table-responsive">
+
+      <!--  <h5 id="turn" style="color:green;font-size:30px;text-align:center">Your Turn</h5>-->
+
+
+      <div>
+        <!--loader and status to show whose turn is there-->
+        <div id="loader"></div>
+        <p id="status" style="position:absolute;left: 17%;top:35%;z-index: 4567;color:white;background-color:blue;font-size:30px"></p>
+      </div>
+
+
+    </div>
+
+    <!--modal to show winner-->
+
+    <div class="container">
+      <button type="button" id="reset" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display:none">Open Modal</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog" style="opacity:0.9;margin-top:30%">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+              <p style="text-align:center;font-size:30px;opacity:1 !important" id="game_over">No winner</p>
+            </div>
+            <center>
+              <div class="" style="opacity:1 !important">
+                <button type="button" onclick="reset_btn()" class="btn btn-primary btn-lg" data-dismiss="modal" style="align:center;opacity:1 !important">Play Again</button>
+                </br><br></div>
+            </center>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!--modal to show winner finish-->
+
+    <!--modal to show room is not present-->
+
+
+    <div class="game_area_pointer">
+      <div id="game_top" style="display:none;position:relative;bottom:20px;">
+        <button class="btn-primary pull-left" id="close_play"  style="margin-top:30px;margin-left:10px;width:30px;height:30px;" name="button">X</button>
+
+      </div>
+    </div>
+    <div style="margin-top:-15px">
+      <div id="offline_play_area" class="container table-responsive" style="margin-top:15px;display:none">
+        <div id="ofl" style="margin-bottom:40px">
+
+          <span class='img_span' id="player_img" style='float:left;margin-left:20px;margin-right:-26px;margin-top:0px;height:32px;width:30px;background-image:url(img/face.png)' id="'+"></span> <span id="turn" style="font-size:24px;text-align:center"></span>
+          <span
+            id="counter_turn" class="pull-right" style="border:solid black 2.5px;width:35px;height:35px;border-radius:100%;margin-right:20px;margin-top:1px;font-size:15px"></span>
+        </div>
+
+        <table id="offline_play_area_table" style="margin-top:-3%;" class="table ">
+          <tr>
+            <td id="11"></td>
+            <td id="12"></td>
+            <td id="13"></td>
+            <td id="14"></td>
+            <td id="15"></td>
+            <td id="16"></td>
+            <td id="17"></td>
+            <td id="18"></td>
+          </tr>
+          <tr>
+            <td id="21"></td>
+            <td id="22"></td>
+            <td id="23"></td>
+            <td id="24"></td>
+            <td id="25"></td>
+            <td id="26"></td>
+            <td id="27"></td>
+            <td id="28"></td>
+          </tr>
+          <tr>
+            <td id="31"></td>
+            <td id="32"></td>
+            <td id="33"></td>
+            <td id="34"></td>
+            <td id="35"></td>
+            <td id="36"></td>
+            <td id="37"></td>
+            <td id="38"></td>
+          </tr>
+          <tr>
+            <td id="41"></td>
+            <td id="42"></td>
+            <td id="43"></td>
+            <td id="44"></td>
+            <td id="45"></td>
+            <td id="46"></td>
+            <td id="47"></td>
+            <td id="48"></td>
+          </tr>
+          <tr>
+            <td id="51"></td>
+            <td id="52"></td>
+            <td id="53"></td>
+            <td id="54"></td>
+            <td id="55"></td>
+            <td id="56"></td>
+            <td id="57"></td>
+            <td id="58"></td>
+          </tr>
+          <tr>
+            <td id="61"></td>
+            <td id="62"></td>
+            <td id="63"></td>
+            <td id="64"></td>
+            <td id="65"></td>
+            <td id="66"></td>
+            <td id="67"></td>
+            <td id="68"></td>
+          </tr>
+          <tr>
+            <td id="71"></td>
+            <td id="72"></td>
+            <td id="73"></td>
+            <td id="74"></td>
+            <td id="75"></td>
+            <td id="76"></td>
+            <td id="77"></td>
+            <td id="78"></td>
+          </tr>
+          <tr>
+            <td id="81"></td>
+            <td id="82"></td>
+            <td id="83"></td>
+            <td id="84"></td>
+            <td id="85"></td>
+            <td id="86"></td>
+            <td id="87"></td>
+            <td id="88"></td>
+          </tr>
+        </table>
+
+        <!-- Modal for shos that host has left or closed the room -->
+
+        <!--loader and status to show whose turn is there-->
+        <div id="loader"></div>
+
+      </div>
+      <br>
+<div class="chat_play_btn" style="display:none;margin-top:-30px">
+<button type="button"  id="chat_modal_btn" style="margin-top:5px;width:45px;height: 40px;margin-right:-5px;border-radius:500px;box-shadow:gray 2px" onclick="focus_input()" class="btn btn-info pull-right" name="button"><i class="fa fa-comments" style="font-size:26px;margin-left:-4px;"></i></button>
+
+</div>
+      <div class="" style="margin-top:20px">
+        <p id="status" style="position:absolute;left: 17%;top:35%;z-index: 4567;color:white;background-color:blue;font-size:30px"></p>
+
+
+          <div id="id12" class="modal5 modal6 modal">
+            <div class="modal-content-5 animate-5 " style="border:solid transparent;border-radius:10px;height:50px;margin-top:30px">
+
+              <div class='input-group' ><input type='text' id='chat_in'  placeholder='Type Your Message' maxlength='40' autofocus ><span class='input-group-addon' type="button" style="background-color:#3399ff;border-radius:10px;position:relative;left:-10px"   onclick="send1()" > <i class="fa fa-paper-plane" style="color:white" > </i></span></input></div>
+
+            </div>
+          </div>
+
+      <!--chat-->
+
+    </div>
+
+    </div>
+
+    <div class="" id="choose_multi" class="" style="margin-top:40%;margin-left:7%;display:none">
+      <button data-toggle="collapse" class="btn-primary btn" onclick="hide_join(1);c_button(2)" id="hide_host_button" data-target="#host_list" style="width:50%;font-size:25px;">Host</button>
+
+      <div id="host_list" class="collapse" style="background-color:white;border:solid white;border-radius:10px;margin-top:20px;margin-left:-1%">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:20px;" class="center"><img id="contest_coin" style="height:auto;width:30px;"src="img/coin2.png"></img> 50   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_multiplayer(50,'toe-multi/')">Play</button></span></td>
+            </tr>
+            <tr>
+              <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:20px;" class="center"><img id="contest_coin" style="height:auto;width:30px;"src="img/coin2.png"></img> 500   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_multiplayer(500,'toe-multi/')">Play</button></span></td>
+            </tr>
+            <tr>
+              <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:20px;" class="center"><img id="contest_coin" style="height:auto;width:30px;"src="img/coin2.png"></img> 1000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_multiplayer(1000,'toe-multi/')">Play</button></span></td>
+            </tr>
+            <tr>
+              <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:20px;" class="center"><img id="contest_coin" style="height:auto;width:30px;"src="img/coin2.png"></img> 5000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_multiplayer(5000,'toe-multi/')">Play</button></span></td>
+            </tr>
+            <tr>
+              <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:20px;" class="center"><img id="contest_coin" style="height:auto;width:30px;"src="img/coin2.png"></img> 10000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_multiplayer(10000,'toe-multi/')">Play</button></span></td>
+            </tr>
+            <tr>
+              <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:20px;" class="center"><img id="contest_coin" style="height:auto;width:30px;"src="img/coin2.png"></img> 25000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_multiplayer(25000,'toe-multi/')">Play</button></span></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <br>
+
+      <div id="join_m" class="collapse">
+        <br>
+        <input type="number" style="margin-left:2%;" class="input-lg" maxlength="6" style="width:400px" id="join_no_multi"></input>
+
+        <center>
+          <p id="error" style="font-size:25px;color:red !important;margin-top:15px"></p>
+        </center>
+        <br>
+      </div>
+      <button type="button" class="btn btn-danger" name="button" id="hide_join_button" onclick="hide_join(2);c_button(1)" data-toggle="collapse" data-target="#join_m" data-dismiss="host_list" style="width:50%;font-size:25px;">Join</button>
+
+
+
+    </div>
+
+    <div class="" style="position: absolute;margin-top:-80px;margin-left: 105px;display:none;" id="search_box">
+      <!---
+  <span style="font-size:25px;margin-right:50px;" class="pull-left"><input type="text"  id="myInput" class="input form-control " style="font-size:20px;color:black;width:200px" placeholder="Search room"  name="" value=""></span>
+-->
+      <span style="font-size:25px;color:white;margin-top:50px;position:absolute;margin-left:200px" onclick="play_online_room_show()" class="pull-right fa fa-refresh"></span>
+
+    </div>
+
+    <div id="online_room_list" style="border: red;display:none;margin-top:80px">
+      <!-- '--->
+      <center>
+        <div class="" id="room_list">
+        </div>
+      </center>
+      <div>
+        <br><br><br>
+
+        <br><br><br>
+
+        <br><br><br>
+      </div>
+
+
+      <div id="" class="footer2" class="pull-right">
+        <button type="button" onclick="join_room_btn()" class="btn btn-danger" style="width:100px;box-shadow:  4px 5px 2px gray;" name="button">Join</button>
+        </br>
+        <br>
+        <button type="button" class="btn btn-primary" onclick="open_host_room_modal()" style="width:100px;box-shadow:  4px 5px 2px  gray;" name="button">Host</button>
+      </div>
+
+    </div>
+    <!-- Modal -->
+    <!-- The Modal -->
+    <!-- Modal content -->
+<!---
+    <div id="host_room_modal" class="modal1">
+
+      <div class="modal-content content_host_room_modal">
+        <div class="modal-header header_host_room_modal">
+          <span class="" onclick="close_host_room_modal()" style="font-size:40px;float:right">&times;</span>
+          <b><h3>Create Your room</h3><b>
+          </div>
+          <div class="modal-body">
+            <h4 style="text-align:left">Room Name</h4>
+            <input type="text" class="form-control" maxlength="20" name="" id="room_name1">
+
+            <button data-toggle="" class="btn-info" onclick=""  style="width:100%;font-size:20px;margin-top:20px;padding-bottom:10px">Batting Amount</button>
+            <div id="host_list_room" class="" style="background-color:white;border:solid white;border-radius:10px;margin-top:20px;margin-left:5%">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 50   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_room(50,'toe-room/');close_host_room_modal()"  >Play</button></span></td>
+                  </tr>
+                  <tr>
+                    <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 500   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(500,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                  </tr>
+                  <tr>
+                    <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 1000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(1000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                  </tr>
+                  <tr>
+                    <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 5000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(5000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                  </tr>
+                  <tr>
+                    <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 10000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(10000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                  </tr>
+                  <tr>
+                    <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 25000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(25000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                  </tr>
+              </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="modal-footer footer_host_room_modal" style="text-align:center;">
+          </div>
+        </div>
+
+      </div>
+-->
+      <div id="id14" class="modal5 modal7" style="font-family: 'Audiowide'">
+        <div class="modal-content-5 animate-5 " style="border-radius:10px;margin-top:-30px">
+
+          <div class="modal-header header_host_room_modal">
+            <span class="" onclick="close_host_room_modal()" style="font-size:40px;float:right">&times;</span>
+            <b><h3>Create Your room</h3><b>
+            </div>
+
+            <div class="modal-body">
+              <h4 style="text-align:left">Room Name</h4>
+              <input type="text" class="form-control" maxlength="20" name="" id="room_name1" autofocus>
+
+              <button data-toggle="" class="btn-info" onclick=""  style="width:100%;font-size:20px;margin-top:20px;padding-bottom:10px">Batting Amount</button>
+              <div id="host_list_room" class="" style="background-color:white;border:solid white;border-radius:10px;margin-top:20px;margin-left:5%">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 50   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white" onclick="host_room(50,'toe-room/');close_host_room_modal()"  >Play</button></span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 500   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(500,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 1000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(1000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 5000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(5000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 10000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(10000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="text-align:center;margin-left:10px;color:green;font-weight:bold;font-size:15px;" class="center"><img id="contest_coin" style="height:auto;width:20px;"src="img/coin2.png"></img> 25000   <button class="btn  pull-right"  style="background-color:DodgerBlue;color:white"  onclick="host_room(25000,'toe-room/');close_host_room_modal()">Play</button></span></td>
+                    </tr>
+                </tbody>
+                </table>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+    <!-- Modal -->
+    <div id="room_join_modal" class="modal1">
+  <!-- Modal content -->
+  <div class="modal-content modal_content_room_join">
+    <div class="modal-header modal_header_room_join">
+      <span class="" style="float:right;font-size:30px" onclick="close_join_room_modal()">&times;</span>
+
+    </div>
+    <div class="modal-body">
+      <h3>Please Chose Any Room<br>To Play</h3>
+    </div>
+    <div class="modal-footer modal_footer_room_join">
+
+    </div>
+  </div>
+
+</div>
+
+<!--player list-->
+
+<div id="online_room" style="border: red;display:none;margin-top:-80px;font-family: "Comic Sans MS", cursive, sans-serif">
+
+  <div class="" id="frnd_list" style="margin-top : 100px;font-family: "Comic Sans MS", cursive, sans-serif" >
+    Loading..
+  </div>
+
+<div  id="play_btn"style="position:;margin-top:15%;" class="pull-right">
+</div>
+
+
+  <div class="time footer3">
+    <div id="counter_main" ><span >Game starts in: </span> <span id="counter"></span></div>
+  </div>
+
+</div>
+
+<!--      finish   --->
+<div class="offline" id="offline" style='margin-left:20px;;margin-top:120px;display:none;font-family: 'Audiowide';font-size: 22px;'>
+  <div class="offline_multiplayer" id="offline_play" >
+  <button type="button" class="btn btn-info btn-lg" onclick="take_name(2)" style=" width:200px;" name="button">2 Player</button></br></br>
+ <button type="button" class="btn btn-primary btn-lg" style=" width:200px;" onclick="take_name(3)" name="button">3 Player</button></br></br>
+  <button type="button" class="btn btn-warning btn-lg" style=" width:200px;" onclick="take_name(4)" name="button">4 Player</button></br></br>
+  <button type="button" class="btn btn-success btn-lg" style=" width:200px;" onclick="take_name(5)" name="button">5 Player</button>
+</div>
+
+<div class="">
+  <div class="show_name pull-left" style="margin-bottom:30px;margin-left:17%">
+    </div>
+<br>
+<br>
+<br>
+<div class="give_name" style="margin-top:110px">
+</div>
+</div>
+</div>
+
+
+
+<div class="" id="spinner_div" style='display:none'>
+<div class="container">
+  <button class="btn-danger" style="margin-top:20px;margin-left:-150px">
+    <span>Spin Left:</span><span>10</span>
+  </button>
+</div>
+<div class=""  class="pull-left" style="margin-left:-20%;margin-top:-70px">
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <button  class="footer_spinner btn btn-primary" type="button" value="spin" style="width:100%;" class="btn btn-primary" id='spin' >spin</button>
+</div>
+</div>
+
+
+  <!-- The Modal for winner offline-->
+  <div id="winner_modal" class="modal">
+
+    <!-- Modal content -->
+    <div class="winner_modal_content modal-content">
+      <div class="winner_modal_header modal-header">
+        <h2>Game Over</h2>
+      </div>
+      <div class="modal-body" </style>
+<img src="img/win.png" style="height:auto;width:200px"alt="">
+<h3 id="winner_name" style="font-size:40px"></h3>
+      </div>
+      <div class="winner_modal_footer modal-footer" style="text-align:center;">
+        <button  style="opacity:1;margin-top:10px;margin-bottom:10px;font-size:25px" class="btn btn-primary btn-lg" onclick="reset()">Play Again</button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- The Modal for winner online-->
+  <div id="winner_modal_online" class="modal1">
+
+
+  </div>
+
+<!--- testing for winner modal animiation---->
+<div id="id08" class="modal5 modal8" style="font-family: 'Audiowide'">
+  <div class="modal-content-5 animate-5 " style="margin-top:0px;border-radius:10px">
+
+    <!-- Modal content -->
+    <div style="">
+      <div class="winner_modal_header_online modal-header">
+        <h2>Game Over</h2>
+      </div>
+
+         <div class="body_append">
+         </div>
+
+        <div class="winner_modal_footer_online modal-footer" style="text-align:center;"><br>
+
+
+    <!--    <button  style="opacity:1;margin-top:10px;margin-bottom:10px;color:yellow" class="btn btn-info btn-lg" onclick="reset()">Play Again</button>-->
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--- testing for winner modal animiation---->
+
+
+
+
+  <button type="button" id="player_name_bottom" class="btn btn-info btn-lg" data-toggle="modal" data-target="#player_name_modal" style="display:none">Open Modal</button>
+    <!-- Modal -->
+    <div class="modal fade" id="player_name_modal" role="dialog" style="opacity:0.9;margin-top:20%">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+            <input type="text" id="player_name">
+            <BR>
+            <button  class="btn btn-primary btn-lg" onclick="submit_player_name()" data-dismiss="modal">Submit</button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+    <!--- end of model for increasing for coin -->
+
+
+    <div id="exit_modal" class="modal1">
+
+      <!-- Modal content -->
+      <div class="exit_modal_content modal-content">
+        <div class="exit_modal_header modal-header">
+          <span onclick="close_exit_modal()" style="font-size:30px;float:right">&times;</span>
+
+        </div>
+        <div class="modal-body"  style="text-align:center;color: #002633">
+            <h2 >Do you want <br>to exit?</h2>
+  <div  id="exit_alert_append">
+
+  </div>
+  <br>          <button type="button" onclick="close_exit_modal()" class="btn btn-success btn-lg" style="margin-top:10px;margin-bottom:10px;margin-right:20px" name="button">No</button>
+              <button type="button" onclick="exit_room_show(1)" id='exit_btn' class="btn btn-danger btn-lg" onclick="close_exit_modal()" name="button" style="margin-top:10px;margin-bottom:10px">Yes</button>
+
+        </div>
+        <div class="exit_modal_footer modal-footer" style="text-align:center;height:10px">
+
+        </div>
+      </div>
+
+    </div>
+
+
+        <div id="app_exit_modal" class="modal1">
+
+          <!-- Modal content -->
+          <div class="app_exit_modal_content modal-content">
+            <div class="app_exit_modal_header modal-header">
+              <span onclick="close_modal_app_exit()" style="font-size:30px;float:right">&times;</span>
+
+            </div>
+            <div class="modal-body"  style="text-align:center;color: #002633">
+                <h2 >Do you want <br>to exit?</h2>
+      <br>
+                <button type="button" onclick="close_modal_app_exit();" class="btn btn-success btn-lg" style="margin-top:10px;margin-bottom:10px;margin-right:20px" name="button">No</button>
+                  <button type="button"  id='exit_btn' class="btn btn-danger btn-lg" onclick="close_modal_app_exit();exit_app();" name="button" style="margin-top:10px;margin-bottom:10px">Yes</button>
+
+            </div>
+            <div class="app_exit_modal_footer modal-footer" style="text-align:center;height:10px">
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div id="offline_exit_modal" class="modal1">
+
+          <!-- Modal content -->
+          <div class="exit_modal_content modal-content">
+            <div class="exit_modal_header modal-header" style="height:20px">
+            </div>
+            <div class="modal-body" style="text-align:center;color: #002633">
+                <h2>Do you want <br>to exit?</h2>
+      <br>          <button type="button" onclick="close_offline_exit_modal();" class="btn btn-success btn-lg" style="margin-top:10px;margin-bottom:10px;margin-right:20px" name="button">No</button>
+                  <button type="button"  id='exit_btn' class="btn btn-danger btn-lg" onclick="close_offline_exit_modal();close_offline()" name="button" style="margin-top:10px;margin-bottom:10px">Yes</button>
+
+            </div>
+            <div class="exit_modal_footer modal-footer" style="text-align:center;height:10px">
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+              <!-- Trigger/Open The Modal -->
+              <!-- The Modal -->
+              <div id="my" class="modal1 modal_quick_play" >
+
+                <!-- Modal content -->
+                <div class="modal-content modal_content_quick_play" >
+                  <div class="modal-header modal_header_quick_play" style="text-align:right;height:60px">
+
+                  </div>
+                  <div class="modal-body" style="border-radius:40px">
+                    <p style="font-size:30px;text-align:center">No room present. <br>Do you want to host?</p>
+                  </div>
+                  <div class="modal-footer modal_footer_quick_play" style="text-align:center;font-size:30px;height:80px;">
+            <button type="button" class="btn btn-danger btn-lg" name="button" style="margin-top:20px" onclick="cancel_host()"> No</button>
+            <button type="button" class="btn btn-info btn-lg" onclick="host_multiplayer(50,'toe-online/');close_modal_quick_play()" name="button" style="margin-top:20px">Yes</button>
+                  </div>
+            </div>
+            </div>
+            <!-- end of sliding div for smoothing function -->
+            <!-- The Modal  sharing code to friend-->
+            <div id="share_freind_code" class="modal1">
+              <div class="container">
+
+              <!-- Modal content -->
+              <div class="share_freind_code_content modal-content">
+
+                <div class="share_freind_code_header modal-header">
+                  <span onclick="close_share_freind_code_modal()" id="share_close" style="font-size:30px;float:right;" >&times;</span>
+                    <h1 id='over' style="color:white"></h1>
+                </div>
+                <div class="modal-body">
+
+          <span style="text-align:center;margin-left:10px;color:blue;font-weight:bold;font-size:25px" class="center" id="share"></span>
+
+            </div>
+                <div class="share_freind_code_footer  modal-footer" style="height:57px;" >
+
+                            <center><button class="btn btn-warning" style="display:none;width:100px;text-align:center;margin-bottom:5px;margin-top:10px" type="button"id="share_close_btn" onclick="close_share_freind_code_modal();reload()" name="button">OK</button></center>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+            <div id="coin_over_modal" class="modal1">
+              <div class="container">
+            <!-- Modal content -->
+            <div class="coin_over_content modal-content">
+
+              <div class="coin_over_header modal-header">
+
+      <h1 id='over' style="color:white"></h1>
+              </div>
+              <div class="modal-body">
+<span>Your dont have enough <br>coin </span> <img src="img/coin2.png" style="height:auto;width:20px" alt="">
+<h3>watch video to get coin</h3>
+<br>
+<br>
+<div class="table-responsive">
+    <span><button type="button" class="btn btn-danger btn-lg" name="button" onclick="close_coin_modal();reward_show()"style="margin-top:10px;margin-bottom:10px">Watch Now </button></span><td><span style="text-align:center;margin-left:10px;color:blue;font-weight: bold;font-size:15px" class="center">OR <button type="button" onclick="exit_room()" class="btn btn-info btn-lg" name="button">Exit</button> </span><span></span></td>
+
+
+</div>
+          </div>
+              <div class="coin_over_footer  modal-footer" style="height:20px;" >
+              </div>
+            </div>
+          </div>
+
+          </div>
+
+        <!-- end for share code to friend joing player-->
+
+          <!-- end for share code to friend joing player-->
+
+
+          <div id="player_exit" class="modal1">
+            <div class="container">
+
+            <!-- Modal content -->
+            <div class="share_freind_code_content modal-content">
+
+              <div class="share_freind_code_header modal-header">
+
+          <h1 id='over' style="color:white"></h1>
+              </div>
+              <div class="modal-body">
+
+                <span style="text-align:center;margin-left:10px;color:blue;font-weight:bold;font-size:25px" class="center" id="exit_information">Host has closed the room</span>
+            </div>
+              <div class="share_freind_code_header  modal-footer" style="height:20px;" >
+              </div>
+            </div>
+          </div>
+
+          </div>
+
+
+              <div id="id15" class="modal5 modal6 modal">
+                <div class="modal-content-5 animate-5 " style="border:solid transparent;border-radius:10px;height:300px;margin-top:30px">
+          <h1>congratulations you got <h1 id="rewarded_video_coin"> </h1> <img src="img/coin2.png" style="height:auto;width:20px"></img></h1><br>
+          <span class="pull-left" style="margin-left:25px"><button type="button" onclick="$('#id15').css('display','none');window.location.hash='#homepage'" class="btn btn-lg btn-danger" name="button">Ok</button></span><span class="pull-right" style="margin-right:25px" ><button class="btn btn-lg btn-info" type="button" onclick="reward_show()" name="button">Watch More</button>
+          </span>
+                </div>
+              </div>
+
+<button type="button" onclick="$('#id16').css('display','block');" style="display:none" name="button">dgfsg</button>
+        <div id="id16" class="modal5 modal6 modal">
+        <div class="modal-content-5 animate-5 " style="border:solid transparent;border-radius:10px;height:90%;margin-top:0px;overflow-y:scroll;overflow-x:hidden">
+          <span class='pull-right' style="margin-right:20px" onclick="$('#id16').css('display','none');" >x</span><br>
+<h3 style=""> Terms and Conditions </h3><br>
+<div class="terms">
+<p style="text-align:left;text-decoration:underline">Last updated: 6-july-2018</p>
+<p>Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using http://www.spotdoit.in  website and our  Mobile App  tic tac toe(the "Service") operated by our Company SpotDoit. </p>
+<p>Your access to and use of the Service is conditioned on your acceptance of and compliance withthese Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>
+<p>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.</p>
+<br>
+<h2>Links To Other Web Sites</h2>
+<p>Our Service may contain links to third-party web sites or services that are not owned or controlled by SpotDoit.
+SpotDoit  has no control over, and assumes no responsibility for, the content,privacy policies, or practices of any third party web sites or services. You further acknowledge andagree that SpotDoit shall not be responsible or liable, directly or indirectly, for anydamage or loss caused or alleged to be caused by or in connection with use of or reliance on anysuch content, goods or services available on or through any such web sites or services.
+</p>
+<br>
+<h2>Changes</h2>
+<p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time.  What constitutes a material change will be determined at our sole discretion.</p>
+<br>
+<h2>Payment</h2>
+<p>We payment through paytm only. We demand your paytm mobile no, if the paytm mobile number will be wrong,we will not be responsible..
+After your payment request we can take two to five days to proceed it.
+Payment will be done only if you have earned it in proper way. Payment will be done only, if we agree. If we declined for payment, you can not do anything.
+</p><br>
+
+<h2>Purchases</h2>
+<p>If you wish to purchase any product or service made available through the Service ("Purchase"), you
+may be asked to supply certain information relevant to your Purchase
+</p>
+<br>
+<h2>Contact Us</h2>
+<p>If you have any questions about these Terms, please contact us at Spotdoit2018@gmail. Com</p>
+</div><br>
+<button type="button" class="btn btn-primary" onclick="$('#id16').css('display','none');" style="font-size:25px" name="button">I agree</button><br><br>
+          </div>
+      </div>
+
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC0lsJwTh1oQ_APechCwDu57voXvynZgzw",
+    authDomain: "tic-tac-toe-9fdbe.firebaseapp.com",
+    databaseURL: "https://tic-tac-toe-9fdbe.firebaseio.com",
+    projectId: "tic-tac-toe-9fdbe",
+    storageBucket: "tic-tac-toe-9fdbe.appspot.com",
+    messagingSenderId: "574437880141"
+  };
+  firebase.initializeApp(config);
+var account_coin;
+var e;
+var wallet_balance;
+var giv_reward_coin;
+
+var storage = window.localStorage;
+function onOffline() {
+  var_network_status='offline';
+  //$("#network").css("display","block");
+  //$("#network").css("color","red");
+//$("#network").html("Check your connection...");
+}
+
+
+function onOnline() {
+  var_network_status='online';
+  $("#network").css("color","green");
+  $("#network").html("Your are online")
+initial_data();
+  setTimeout(function(){
+    $("#network").css("display","none");
+  },2000)
+
+  }
+
+  initial_data();
+
+
+function initial_data(){
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    var user = firebase.auth().currentUser;
+      var str=user.email;
+       e=str.replace(/[^a-zA-Z0-9]/g, "");
+       $.get("https://tic-tac-toe-9fdbe.firebaseio.com/"+"usersData/"+e+"/"+"coin.json", function(coin_ac) {
+         if(coin_ac||coin_ac===0){
+           $("#main_account_coin").html(coin_ac);
+           storage.setItem('coin', coin_ac) ;// Pass a key name and its value to add or update that key.
+
+           console.log(coin_ac)
+           account_coin=coin_ac;
+     }
+     else{
+       //alert("vo");
+     }
+     })
+
+/*          $.get("https://tic-tac-toe-9fdbe.firebaseio.com/"+"usersData/"+e+"/"+"diamond.json", function(diamond_ac) {
+            console.log(diamond_ac);
+            if(diamond_ac||diamond_ac===0){
+              $("#main_account_diamond").html(diamond_ac);
+        }
+        else{
+          //alert("vo");
+        }
+        })
+*/
+
+        $.get("https://tic-tac-toe-9fdbe.firebaseio.com/"+"usersData/"+e+"/"+"wallet_amount.json", function(wallet_amount) {
+          console.log(wallet_amount);
+          if(wallet_amount||wallet_amount===0){
+            wallet_balance = wallet_amount;
+            $("#wallet_balance").html(Math.round(wallet_balance));
+            $("#main_account_diamond").html(Math.round(wallet_balance));
+            storage.setItem('wallet', wallet_amount) ;// Pass a key name and its value to add or update that key.
+
+
+      }
+      else{
+        wallet_balance=0;
+        $("#wallet_balance").html("0");
+        $("#main_account_diamond").html('0');
+  storage.setItem('wallet', wallet_balance) ;// Pass a key name and its value to add or update that key.
+        //alert("vo");
+      }
+      })
+
+       console.log(e);;
+     }
+   })
+ }
+ $.get("https://tic-tac-toe-9fdbe.firebaseio.com/"+"reward.json", function(reward_coin) {
+   if(account_coin <=0){
+   giv_reward_coin = reward_coin;
+     //console.log(reward_coin);
+   }
+   else{
+     giv_reward_coin = 10;
+   }
+ });
+
+// functino for converting coin into wallet
+/*function account_coin_to_wallet(){
+  var converting_coin = document.getElementById('converting_coin').value;
+  if(converting_coin){
+    alert(converting_coin);
+  }else{
+    alert("Please Enter Your")
+  }
+}*/
+// function for payment money_request
+var payment_email;
+var payment_paytm_no;
+var Withdrwal_amount;
+function money_request(){
+ payment_email = document.getElementById('payment_email').value;
+ payment_paytm_no = document.getElementById('payment_paytm_no').value;
+ Withdrwal_amount = document.getElementById('Withdrwal_amount').value;
+
+payment_email=payment_email.replace(/[^a-zA-Z0-9]/g, "");
+if(payment_paytm_no&&Withdrwal_amount&&payment_email){
+if(e==payment_email){
+  if(wallet_balance>=100){
+
+    if(Withdrwal_amount<=wallet_balance){
+
+            $(".loader").css('margin-top','-10%');
+          $(".loader").fadeIn()
+          $("#homepage").css('pointer-events','none');
+          var send_data={
+      amount:Withdrwal_amount,
+      paytm_no:payment_paytm_no
+      }
+
+      wallet_balance=wallet_balance-Withdrwal_amount;
+  var send_data2={
+  wallet_amount:wallet_balance
+  }
+      var ref = firebase.database().ref("usersData/"+payment_email);
+      ref.update(send_data2);
+
+      var ref = firebase.database().ref("Payment-request/"+payment_email);
+      ref.update(send_data);
+setTimeout(function(){
+  $(".loader").fadeOut()
+  $("#homepage").css('pointer-events','');
+//alert("sucess");
+document.getElementById('id01').style.display='none';
+document.getElementById('id03').style.display='block';
+
+$("#wallet_balance").html(Math.round(wallet_balance));
+$("#main_account_diamond").html(Math.round(wallet_balance));
+$("#remaining_balance_show").html("Remaining : "+"<span class='fa fa-inr' style='color:green;font-size:30px'> </span> "+wallet_balance);
+$("#modal_balance").html("Requested Successfully");
+$("#wallet_balance_show").html(Math.round(Withdrwal_amount));
+
+    storage.setItem('wallet', wallet_balance) ;
+},3000)
+    }
+    else{
+      alert('not enough balance');
+    }
+
+  }
+  else{
+    alert("low balanace")
+  }
+
+
+}
+else{
+$("#wrong_email").html("wrong email");
+  //alert('wrong email');
+}
+}
+else{
+  alert("information missing");
+}
+
+}
+
+
+function getReward2(){
+//  alert ("helo");
+    $("#rewarded_video_coin").html(giv_reward_coin)
+  account_coin=account_coin+giv_reward_coin;
+
+  $("#main_account_coin").html(account_coin);
+
+//  alert(account_coin);
+}
+/*
+var add_video={
+video_add_one  : "video one",
+video_add_two : "video 2",
+banner_add_one : "video 3",
+banner_add_two : "video 4",
+innertial_add_one : "video 3",
+innertial_add_two : "video 4"
+
+}
+
+var ref = firebase.database().ref("video");
+ref.set(add_video);
+*/
+// trying for making video on firebase
+
+
+
+
+
+//logout()
+function get_money(z){
+
+  if(z===1){
+
+      $(".loader").css('margin-top','-10%');
+    $(".loader").fadeIn()
+    $("#homepage").css('pointer-events','none');
+    account_coin=account_coin-coin_amount;
+    dec_coin(coin_amount);
+    $("#main_account_coin").html(account_coin);
+    storage.setItem('coin', account_coin) ;
+
+    var send_data={
+wallet_amount:wallet_balance+coin_amount/100,
+coin:account_coin
+}
+wallet_balance=wallet_balance+coin_amount/100;
+
+var ref = firebase.database().ref("usersData/"+e);
+ref.update(send_data);
+
+setTimeout(function(){
+  $(".loader").fadeOut()
+  $("#homepage").css('pointer-events','');
+//alert("sucess");
+document.getElementById('id02').style.display='none';
+document.getElementById('id03').style.display='block';
+$("#modal_balance").html("Total Balance");
+$("#wallet_balance").html(Math.round(wallet_balance));
+$("#main_account_diamond").html(Math.round(wallet_balance));
+
+$("#wallet_balance_show").html(Math.round(wallet_balance));
+
+storage.setItem('wallet', wallet_balance) ;
+
+},3000)
+
+  }
+  else if(z===2){
+
+        $("#show_amount").html("Not enough coin");
+  }
+  else if(z===3){
+    $("#g_phone").attr('class','');
+    $("#show_amount").html("Enter coin");
+  }
+  else{
+    $("#show_amount").html("Error");
+  }
+coin_amount=0;
+document.getElementById('converting_coin').value= ' ';
+$("#convert_button").attr('onclick','get_money(2)');
+  $("#show_amount").html("Enter coin");
+}
+
+
+
+var coin_amount;
+function conversoin2(){
+   coin_amount=document.getElementById('converting_coin').value;
+
+if(account_coin){
+  if(coin_amount<=account_coin && account_coin >0){
+    $("#show_amount").html(coin_amount/100);
+    $("#g_phone").attr('class','fa fa-inr');
+    $("#convert_button").attr('onclick','get_money(1)')
+}
+else if(account_coin === 0) {
+    $("#show_amount").html("Not enough coin");
+    $("#convert_button").attr('onclick','get_money(2)');
+    $("#g_phone").attr('class','');
+}
+}else{
+  $("#show_amount").html("Error");
+$("#g_phone").attr('class','');
+}
+}
+
+function sucess(){
+  document.getElementById('id03').style.display='none';
+  $("#homepage").css('pointer-events','');
+  $(".loader").css('margin-top','');
+  $("#remaining_balance_show").empty();
+}
+
+ // funciton for log_out
+   function logout() {
+     firebase.auth().signOut();
+   }
+
+   function close(){
+     alert("ya")
+           $("#frnd_list").html("");
+           $("#homepage").fadeIn();
+         }
+
+var odd_even=1
+var h=1;
+function hide_join(s){
+  //alert("working");
+  if(s===1){
+
+    h=h+1;
+    $("#hide_join_button").slideToggle();
+    if(h%2==0){
+      $('#hide_host_button').css('margin-top','-150px');
+
+      $('#host_list').css('margin-top','-30px');
+    }
+    else{
+      $('#hide_host_button').css('margin-top','');
+      $('#host_list').css('margin-top','');
+    }
+
+
+  }
+
+  else{
+    odd_even=odd_even+1;
+    var oE=odd_even%2;
+    //alert(oE);
+    $("#hide_host_button").slideToggle();
+    if(oE===0){
+      document.getElementById("join_no_multi").autofocus=true;
+      $("#hide_join_button").attr("onclick","join_multi()");
+      $("#hide_join_button").css("margin-top","-30px");
+  setTimeout(function(){
+  //$("#join_m").removeClass("collapse");
+  $("#hide_join_button").attr("data-target","");
+
+},200)
+
+
+    }
+    else{
+      setTimeout(function(){
+    //    $("#join_m2").addClass("collapse");
+        //$("#hide_join_button").attr("data-target","join_m");
+    },200)
+
+      $("#hide_join_button").attr("onclick","hide_join(2);c_button(1)");
+      $("#hide_join_button").css("margin-top","");
+    }
+  }
+}
+
+var value_coin = storage.getItem('coin'); // Pass a key name to get its value.
+var value_wallet = storage.getItem('wallet'); // Pass a key name to get its value.
+//alert(value_coin);
+$("#main_account_coin").html(value_coin);
+$("#main_account_diamond").html(value_wallet);
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+</script>
+</html>

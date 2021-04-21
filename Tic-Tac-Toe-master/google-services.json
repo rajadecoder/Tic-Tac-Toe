@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "574437880141",
+    "firebase_url": "https://tic-tac-toe-9fdbe.firebaseio.com",
+    "project_id": "tic-tac-toe-9fdbe",
+    "storage_bucket": "tic-tac-toe-9fdbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574437880141:android:57cfc27d83057e89",
+        "android_client_info": {
+          "package_name": "www.spotdoit.tic_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574437880141-57ls08eursagjf6q7aburfapiilpc10j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAals8lNWsLdNRCBKsQF8T63mrvAuTM9hM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
