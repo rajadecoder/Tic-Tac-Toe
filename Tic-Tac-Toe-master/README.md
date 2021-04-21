@@ -27,3 +27,5 @@ Online multiplayer tic tac toe game . Play with your friends now.
 
 ![App Preview Home screen](https://firebasestorage.googleapis.com/v0/b/stora-5c1e1.appspot.com/o/github%2FScreenshot%20(31).png?alt=media&token=ba34a21e-055d-4767-8921-be044d72e622)
 
+
+<img src="https://github.com/rajadecoder/Tic-Tac-Toe/blob/master/Tic-Tac-Toe-master/img/Screenshot%20(15).png">
